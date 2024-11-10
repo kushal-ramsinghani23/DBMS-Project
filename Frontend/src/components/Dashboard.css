@@ -1,0 +1,234 @@
+/* src/components/Dashboard.css */
+
+/* Body styling with dark theme */
+body {
+    background-color: #121212;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #e0e0e0;
+}
+
+/* Dashboard container with blurred background */
+.dashboard-container {
+    display: flex;
+    background-color: black;
+    min-height: 100vh;
+    
+
+    position: relative;
+}
+
+.dashboard-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: -1;
+}
+
+/* Sidebar styling with dark background */
+.sidebar {
+    width: 70px;
+    background-color: #1f1f1f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    gap: 15px;
+}
+
+.sidebar .icon {
+    width: 50px;
+    height: 50px;
+    background-color: #333;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #e0e0e0;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar .icon:hover {
+    background-color: #555;
+}
+
+/* Content styling with dark theme */
+.content {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-div {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCJnMJZa6t-jx_WGQ_I8eCHwEIOspY3OW_RQ&s') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Main card styling for dark theme */
+.main-card {
+    /* display: flex;
+    flex-flow: row wrap; */
+    text-align: center;
+    background-color: #1f1f1f;
+    border-radius: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    width: 90%;
+    max-width: 1100px;
+    color: #e0e0e0;
+}
+
+
+.main-card h2 {
+    /* color: #ff6363; */
+    color: greenyellow;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    /* height: 100vh; */
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* Form group for inputs */
+.form-group input {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+    max-width: 300px;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    color: #e0e0e0;
+}
+
+button {
+    margin: 5px;
+    background-color: darkgreen;
+    color: #e0e0e0;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #e05353;
+}
+
+/* Table styling */
+.table-container {
+    margin-top: 20px;
+    background-color: #222;
+    border-radius: 15px;
+    padding: 10px;
+    overflow: hidden;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #e0e0e0;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+td {
+    background-color: #2a2a2a;
+}
+
+.delete {
+    color: #ff6363;
+    cursor: pointer;
+}
+.table-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.table-link {
+    color: #ff6363;
+    text-decoration: none;
+    font-size: 1.2em;
+    padding: 10px 20px;
+    background-color: #333;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.table-link:hover {
+    background-color: #444;
+}
+
+/* src/Dashboard.css */
+
+.index-container {
+    text-align: center;
+    margin-top: 50px;
+    height: 100vh;
+    /* background-image: url(https://media.gettyimages.com/id/1871491728/photo/members-of-the-national-cadet-corps-are-demonstrating-an-infantry-war-in-kolkata-india-on.jpg?s=612x612&w=0&k=20&c=EuAEE3wqqcWeSe_1Du0qE1iPgX2VgQBX3G5j1a94fbg=); */
+    background: url('https://media.gettyimages.com/id/1189760373/photo/indian-national-flag-with-3-armed-forces-flags.jpg?s=612x612&w=0&k=20&c=fQBXPb1hfu5RGpj6jXPM8vBkmB_aZfaSSH9Qrv3fBzk=') no-repeat center center fixed;
+    background-size: cover;
+    color:darkgreen;
+}
+
+.index-links {
+    margin-top: 30px;
+}
+
+.index-link {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: darkgreen;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.index-link:hover {
+    background-color: darkseagreen;
+}
+.b-heading{
+    display: flex;
+    justify-content: center;
+}
+.heading{
+    border: 2px solid lightgray;
+    border-radius: 15px;
+    background-color: lightgreen;
+    margin: 10px;
+    padding: 5px;
+    width: fit-content;
+    align-self: center;
+}
