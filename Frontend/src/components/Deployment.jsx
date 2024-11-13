@@ -107,8 +107,8 @@ const Deployment = () => {
                         onChange={handleChange}
                     />
                     <button onClick={addDeployment}>Add Deployment</button>
-                    <button onClick={handleChange}>Update Deployment</button>
-                    <button onClick={deleteDeployment}>Delete Deployment</button>
+                    {/* <button onClick={handleChange}>Update Deployment</button>
+                    <button onClick={deleteDeployment}>Delete Deployment</button> */}
                 </div>
 
                 <div className="table-container">

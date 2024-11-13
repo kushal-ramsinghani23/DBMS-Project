@@ -107,8 +107,8 @@ const MedicalRecord = () => {
                     onChange={handleChange}
                 />
                 <button onClick={addMedicalRecord}>Add Medical Record</button>
-                <button onClick={handleChange}>Update Medical Record</button>
-                <button onClick={deleteMedicalRecord}>Delete Medical Record</button>
+                {/* <button onClick={handleChange}>Update Medical Record</button>
+                <button onClick={deleteMedicalRecord}>Delete Medical Record</button> */}
             </div>
 
             <div className="table-container">

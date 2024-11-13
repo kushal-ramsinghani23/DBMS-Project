@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Dashboard.css';
+const port = 9800;
 
 const Operation = () => {
     const [operations, setOperations] = useState([]);
@@ -10,6 +11,7 @@ const Operation = () => {
         Start_Date: '',
         End_Date: ''
     });
+    const [editingId, setEditingId] = useState(null); // Track the ID of the operation being edited
 
     useEffect(() => {
         fetchOperations();
@@ -17,7 +19,7 @@ const Operation = () => {
 
     const fetchOperations = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/Operation');
+            const response = await axios.get(`http://localhost:${port}/api/operation`);
             setOperations(response.data);
         } catch (error) {
             console.error("Error fetching operations:", error);
@@ -31,7 +33,8 @@ const Operation = () => {
 
     const addOperation = async () => {
         try {
-            await axios.post('http://localhost:5000/Operation', newOperation);
+            const response = await axios.post(`http://localhost:${port}/api/operation`, newOperation);
+            setOperations((prev) => [...prev, response.data]);
             setNewOperation({
                 Operation_Name: '',
                 Start_Date: '',
@@ -45,72 +48,87 @@ const Operation = () => {
 
     const deleteOperation = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/Operation/${id}`);
-            fetchOperations();
+            await axios.delete(`http://localhost:${port}/api/operation/${id}`);
+            setOperations((prev) => prev.filter((operation) => operation.Operation_ID !== id));
+            console.log("Operation deleted successfully");
         } catch (error) {
             console.error("Error deleting operation:", error);
         }
     };
 
-    return (
+    const editOperation = async () => {
+        try {
+            const response = await axios.put(`http://localhost:${port}/api/operation/${editingId}`, newOperation);
+            setOperations((prev) =>
+                prev.map((operation) =>
+                    operation.Operation_ID === editingId ? { ...operation, ...newOperation } : operation
+                )
+            );
+            setEditingId(null); // Exit editing mode
+            setNewOperation({ Operation_Name: '', Start_Date: '', End_Date: '' });
+        } catch (error) {
+            console.error("Error updating operation:", error);
+        }
+    };
 
+    const startEditing = (operation) => {
+        setEditingId(operation.Operation_ID);
+        setNewOperation({
+            Operation_Name: operation.Operation_Name,
+            Start_Date: operation.Start_Date,
+            End_Date: operation.End_Date,
+        });
+    };
+
+    return (
         <div className='center-div'>
             <div className="main-card">
-            <h2>Operations</h2>
-            <div className="form-group">
-                <input
-                    type="text"
-                    name="Operation_Name"
-                    placeholder="Operation Name"
-                    value={newOperation.Operation_Name}
-                    onChange={handleChange}
-                />
-                <input
-                    type="date"
-                    name="Start_Date"
-                    placeholder="Start Date"
-                    value={newOperation.Start_Date}
-                    onChange={handleChange}
-                />
-                <input
-                    type="date"
-                    name="End_Date"
-                    placeholder="End Date"
-                    value={newOperation.End_Date}
-                    onChange={handleChange}
-                />
-                <button onClick={addOperation}>Add Operation</button>
-                <button onClick={handleChange}>Update Operation</button>
-                    <button onClick={deleteOperation}>Delete Operation</button>
-            </div>
+                <h2>Operations</h2>
+                <div className="form-group">
+                    {['Operation_Name', 'Start_Date', 'End_Date'].map((field) => (
+                        <input
+                            key={field}
+                            type={field.includes('Date') ? 'date' : 'text'}
+                            name={field}
+                            placeholder={field.replace('_', ' ')}
+                            value={newOperation[field]}
+                            onChange={handleChange}
+                        />
+                    ))}
+                    {editingId ? (
+                        <button onClick={editOperation}>Update Operation</button>
+                    ) : (
+                        <button onClick={addOperation}>Add Operation</button>
+                    )}
+                </div>
 
-            <div className="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Operation Name</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {operations.map((operation) => (
-                            <tr key={operation.Operation_ID}>
-                                <td>{operation.Operation_Name}</td>
-                                <td>{operation.Start_Date}</td>
-                                <td>{operation.End_Date}</td>
-                                <td>
-                                    <button className="delete" onClick={() => deleteOperation(operation.Operation_ID)}>Delete</button>
-                                </td>
+                <div className="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Operation Name</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Actions</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {operations.map((operation) => (
+                                <tr key={operation.Operation_ID}>
+                                    <td>{operation.Operation_Name}</td>
+                                    <td>{operation.Start_Date}</td>
+                                    <td>{operation.End_Date}</td>
+                                    <td>
+                                        <button onClick={() => startEditing(operation)}>Edit</button>
+                                        <button className="delete" onClick={() => deleteOperation(operation.Operation_ID)}>Delete</button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-        </div>
-        
     );
 };
 

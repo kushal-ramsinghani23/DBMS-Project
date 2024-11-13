@@ -98,8 +98,8 @@ const Equipment = () => {
                     onChange={handleChange}
                 />
                 <button onClick={addEquipment}>Add Equipment</button>
-                <button onClick={handleChange}>Update Equipment</button>
-                <button onClick={deleteEquipment}>Delete Equipment</button>
+                {/* <button onClick={handleChange}>Update Equipment</button>
+                <button onClick={deleteEquipment}>Delete Equipment</button> */}
             </div>
 
             <div className="table-container">

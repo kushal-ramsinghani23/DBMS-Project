@@ -89,8 +89,8 @@ const Logistics = () => {
                         onChange={handleChange}
                     />
                     <button onClick={addLogistics}>Add Logistics</button>
-                    <button onClick={handleChange}>Update Logistics</button>
-                    <button onClick={deleteLogistics}>Delete Logistics</button>
+                    {/* <button onClick={handleChange}>Update Logistics</button>
+                    <button onClick={deleteLogistics}>Delete Logistics</button> */}
                 </div>
 
                 <div className="table-container">

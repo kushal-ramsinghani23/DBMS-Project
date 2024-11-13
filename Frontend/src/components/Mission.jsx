@@ -99,8 +99,8 @@ const Mission = () => {
                     onChange={handleChange}
                 />
                 <button onClick={addMission}>Add Mission</button>
-                <button onClick={handleChange}>Update Mission</button>
-                <button onClick={deleteMission}>Delete Mission</button>
+                {/* <button onClick={handleChange}>Update Mission</button>
+                <button onClick={deleteMission}>Delete Mission</button> */}
             </div>
 
             <div className="table-container">

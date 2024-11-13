@@ -80,8 +80,8 @@ const IntelligenceReport = () => {
                     onChange={handleChange}
                 />
                 <button onClick={addReport}>Add Intelligence Report</button>
-                <button onClick={handleChange}>Update Intelligence Report</button>
-                    <button onClick={deleteReport}>Delete Intelligence Report</button>
+                {/* <button onClick={handleChange}>Update Intelligence Report</button>
+                    <button onClick={deleteReport}>Delete Intelligence Report</button> */}
             </div>
 
             <div className="table-container">
